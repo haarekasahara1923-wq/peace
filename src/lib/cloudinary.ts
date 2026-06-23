@@ -1,6 +1,6 @@
-import { v2 as cloudinary } from "cloudinary";
+import { v2 } from "cloudinary";
 
-cloudinary.config({
+v2.config({
   cloud_name: process.env.CLOUDINARY_CLOUD_NAME || "",
   api_key: process.env.CLOUDINARY_API_KEY || "",
   api_secret: process.env.CLOUDINARY_API_SECRET || "",
@@ -9,7 +9,7 @@ cloudinary.config({
 
 export async function uploadImageBuffer(buffer: Buffer, folder = "peace_college"): Promise<string> {
   return new Promise((resolve, reject) => {
-    const uploadStream = cloudinary.uploader.upload_stream(
+    const uploadStream = v2.uploader.upload_stream(
       { folder },
       (error, result) => {
         if (error) {
@@ -24,4 +24,4 @@ export async function uploadImageBuffer(buffer: Buffer, folder = "peace_college"
   });
 }
 
-export default cloudinary;
+export default v2;
