@@ -1,0 +1,49 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Admin {
+  id        String   @id @default(uuid())
+  email     String   @unique
+  password  String // bcrypt hashed
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Course {
+  id          String   @id @default(uuid())
+  title       String
+  stream      String   @unique
+  description String
+  duration    String
+  eligibility String
+  image       String // Cloudinary URL
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Placement {
+  id          String   @id @default(uuid())
+  companyName String
+  role        String
+  package     String
+  description String
+  logoUrl     String // Cloudinary URL
+  datePosted  DateTime @default(now())
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model ContactSubmission {
+  id          String   @id @default(uuid())
+  studentName String
+  course      String
+  contactNo   String
+  email       String?
+  submittedAt DateTime @default(now())
+}
