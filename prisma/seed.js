@@ -80,7 +80,7 @@ async function main() {
   });
 
   if (!existingAdmin) {
-    const hashedPassword = bcrypt.hashSync("PeaceAdmin2026!", 10);
+    const hashedPassword = bcrypt.hashSync("peace123", 10);
     await prisma.admin.create({
       data: {
         email: adminEmail,
